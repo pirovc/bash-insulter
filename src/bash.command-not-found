@@ -73,14 +73,16 @@ print_message () {
     [[ -n ${CMD_NOT_FOUND_MSGS_APPEND} ]] && messages+=( "${CMD_NOT_FOUND_MSGS_APPEND[@]}" )
 
     # Seed RANDOM with an integer of some length
-    RANDOM=$(od -vAn -N4 -tu < /dev/urandom)
+    #RANDOM=$(od -vAn -N4 -tu < /dev/urandom)
 
     # Print a randomly selected message, but only about half the time to annoy the user a
     # little bit less.
-    if [[ $((${RANDOM} % 2)) -lt 1 ]]; then
-        message=${messages[${RANDOM} % ${#messages[@]}]}
-        printf "\\n  %s\\n\\n" "$(tput bold)$(tput setaf 1)${message}$(tput sgr0)" >&2
-    fi
+    #if [[ $((${RANDOM} % 2)) -lt 1 ]]; then
+    
+    message=${messages[${RANDOM} % ${#messages[@]}]}
+    printf "\\n  %s\\n\\n" "$(tput bold)$(tput setaf 1)${message}$(tput sgr0)" >&2
+    
+    #fi
 }
 
 function_exists () {
